@@ -1,0 +1,29 @@
+---
+title: "Untitled"
+author: "Jonathan Wilson"
+date: "01/06/2020"
+output: html_document
+---
+
+```{r}
+
+library(metagear)
+library(here)
+
+metagear::abstract_screener(here::here("literature_screen_pubmed","effort_Jonny.csv"), aReviewer = "Jonny", titleColumnName = "Title")
+
+```
+
+```{r}
+
+ef2<-read.csv(here::here("literature_screen_pubmed","effort_Jonny_2.csv"))
+effort_distribute(ef2, reviewers = "Jonny", effort = 100, initialize = T,save_split = T)
+
+
+
+#rescreen maybes
+
+metagear::abstract_screener(here::here("literature_screen_pubmed","effort_Jonny_maybe.csv"), aReviewer = "Jonny",unscreenedColumnName = "INCLUDE", titleColumnName = "Title")
+
+
+```

@@ -1,0 +1,78 @@
+---
+title: "Exploratory anlaysis"
+author: "JJW"
+date: "10/07/2020"
+output: html_document
+---
+
+
+```{r}
+
+library(tidyverse)
+library(here)
+library(janitor)
+library(magrittr)
+library(visdat)
+
+
+```
+
+```{r}
+Raw_factor_data1<-read.csv(here::here("data", "raw_data", "factors_Xinyi_final.csv"))
+
+Raw_factor_data<-Raw_factor_data1%>% row_to_names(row_number = 1)
+
+Raw_factor_data_col<-Raw_factor_data[,-c(36,37,44,54,55,58,59,60,61,62,64,68,70,71,78,82,83,84,87,88,89,90:105)]
+```
+
+
+
+
+```{r}
+Raw_factor_data_col$Transmission_Mode%<>%as.character() #we had 17 levels for tranmsission, summarised intpo 3 levels
+Raw_factor_data_col$Transmission_Mode[grep("ect/", Raw_factor_data_col$Transmission_Mode)] <- "Direct/Indirect" 
+
+Raw_factor_data_col$Transmission_Mode[grep("Indirect ", Raw_factor_data_col$Transmission_Mode)] <- "Indirect" 
+
+Raw_factor_data_col$Transmission_Mode[grep("Direct ", Raw_factor_data_col$Transmission_Mode)] <- "Direct" 
+
+Raw_factor_data_col$Transmission_Mode%<>%as.factor()
+```
+
+```{r}
+Raw_factor_data_col$Host_Range%<>%as.character() #group into broad and narrow
+
+Raw_factor_data_col$Host_Range[grep("Broad", Raw_factor_data_col$Host_Range)] <- "Broad" 
+
+Raw_factor_data_col$Host_Range[grep("Narrow", Raw_factor_data_col$Host_Range)] <- "Narrow" 
+
+Raw_factor_data_col$Host_Range%<>%as.factor()
+```
+
+
+
+```{r}
+Raw_factor_data_col1<-Raw_factor_data1[,-c(36,37,44,54,55,58,59,60,61,62,64,68,70,71,78,82,83,84,87,88,89,90:105)]
+graf<-Raw_factor_data_col1[c(1,70),c(36:68)]
+
+graf%<>%t()
+
+colnames(graf)[1]<-"Factors"
+colnames(graf)[2]<-"Percentage"
+
+graf%<>%as.data.frame()
+
+graf$Percentage%<>%as.character()
+
+graf$Percentage%<>%str_remove("%")
+
+graf$Percentage%<>%as.numeric()
+
+
+ggplot(graf, aes(Factors, Percentage))+geom_bar(stat = "identity")+ theme(axis.text.x = element_text(angle = 90, size=7))
+```
+```{r}
+visdat::vis_miss(Raw_factor_data_col)
+
+pairs(Raw_factor_data_col[,c(36:40)])
+```

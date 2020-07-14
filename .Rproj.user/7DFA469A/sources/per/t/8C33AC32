@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1594412676301.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1190311904",
+    "id" : "8C33AC32",
+    "lastKnownWriteTime" : 1594686587,
+    "last_content_update" : 1594686587610,
+    "path" : "C:/Users/jjw_t/Desktop/GVSP_2020/code/Exploration.Rmd",
+    "project_path" : "code/Exploration.Rmd",
+    "properties" : {
+        "cursorPosition" : "72,0",
+        "scrollLine" : "62",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

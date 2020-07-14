@@ -1,0 +1,10 @@
+"0",""
+"0","library(metagear)"
+"0","library(here)"
+"0",""
+"0","metagear::abstract_screener(here::here(""literature_screen_pubmed"",""effort_Jonny.csv""), aReviewer = ""Jonny"", titleColumnName = ""Title"")"
+"2","Error: metagear error in ::(): all abstracts have already been screened,
+                           no more abstracts coded as: not vetted.metagear error in metagear(): all abstracts have already been screened,
+                           no more abstracts coded as: not vetted.metagear error in abstract_screener(): all abstracts have already been screened,
+                           no more abstracts coded as: not vetted.
+"

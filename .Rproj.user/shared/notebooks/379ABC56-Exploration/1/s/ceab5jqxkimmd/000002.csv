@@ -1,0 +1,8 @@
+"0","Raw_factor_data_col$Transmission_Mode%<>%as.character() #we had 17 levels for tranmsission, summarised intpo 3 levels"
+"0","Raw_factor_data_col$Transmission_Mode[grep(""ect/"", Raw_factor_data_col$Transmission_Mode)] <- ""Direct/Indirect"" "
+"0",""
+"0","Raw_factor_data_col$Transmission_Mode[grep(""Indirect "", Raw_factor_data_col$Transmission_Mode)] <- ""Indirect"" "
+"0",""
+"0","Raw_factor_data_col$Transmission_Mode[grep(""Direct "", Raw_factor_data_col$Transmission_Mode)] <- ""Direct"" "
+"0",""
+"0","Raw_factor_data_col$Transmission_Mode%<>%as.factor()"

@@ -1,0 +1,25 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1592491647118.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1349828575",
+    "id" : "4629B4B9",
+    "lastKnownWriteTime" : 1593101022,
+    "last_content_update" : 1593101022514,
+    "path" : "C:/Users/jjw_t/Desktop/GVSP_2020/literature_screen_pubmed/Lit_screen_JJW.Rmd",
+    "project_path" : "literature_screen_pubmed/Lit_screen_JJW.Rmd",
+    "properties" : {
+        "cursorPosition" : "28,0",
+        "scrollLine" : "0"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

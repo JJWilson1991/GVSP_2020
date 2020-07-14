@@ -1,0 +1,91 @@
+---
+title: "Data_Screen"
+author: "Jonathan Wilson"
+date: "26/05/2020"
+output: html_document
+---
+
+```{r}
+library(here)
+library(tidyverse)
+library(visdat)
+```
+```{r}
+
+Spillover1<-read_csv(here::here("data","Virus_Spillover_p1.csv"))
+
+
+
+
+
+host_table<-table(unique(Spillover1$Host))
+
+
+```
+
+```{r}
+
+Spillover2<-Spillover1%>%mutate(Farm=recode(Host, "Bos taurus"="Cattle", "Bubalus bubalis, Bos indicus, Bos taurus"="Cattle","Sus scrofa"="Swine",  "Equus caballus"="Horse"))  
+
+FA<-c("Swine", "Pigs", "pigs", "orse", "attle")
+
+
+
+Farm_animals<-filter(Spillover2, grepl(paste(FA, collapse="|"), Farm))
+
+
+
+```
+
+
+```{r}
+All_associations<-read_csv(here::here("data","associations.csv"))
+
+
+FA2<-c("Sus_scrofa", "Ovis_aries", "Bos_taurus", "Equus caballus", "Capra_aegagrus", "Capra_hircus", "Bubalus_bubalis",  "Cervus_elaphus",  "Cervus_nippon",  "Cervus_timorensis", "Bos_mutus", "Equus_asinus")
+
+
+#pull all interactions involving farm animasl listed above
+Farm_animals2<-filter(All_associations, grepl(paste(FA2, collapse="|"), hHostNameFinal))
+colnames(Farm_animals2)[1]<-"Virus"
+
+
+
+#lets get a list of unique viruses known to infect farm animnals
+farm_a<-as.data.frame(unique(Farm_animals2$Virus))
+colnames(farm_a)[1]<-"Virus_Name"
+```
+
+```{r}
+
+#Farm_animals3<-Farm_animals2[,c(1,2)]
+
+#farm_b<-inner_join(farm_a,Farm_animals3, by="Virus")
+All_farm<-left_join(farm_a, Spillover1, by="Virus_Name")
+
+vis_miss(All_farm)
+#cut repeat columns 
+
+All_farm<-All_farm[,-c(2,3,4,5,13,14,15,16,17,18)]
+```
+
+```{r}
+
+
+All_features<-read_csv(here::here("Data", "viruses.csv"))
+colnames(All_features)[1]<-"Virus_Name"
+#lets fill in a few blanks with our basic info
+Farm_All_features<-left_join(farm_a, All_features)
+Farm_All_features<-Farm_All_features[,-c(6,7,8,9,10,11,12)]
+```
+```{r}
+
+All_Farm_virus<-left_join(Farm_All_features,All_farm, by="Virus_Name")
+
+
+vis_miss(All_Farm_virus)
+
+```
+
+
+

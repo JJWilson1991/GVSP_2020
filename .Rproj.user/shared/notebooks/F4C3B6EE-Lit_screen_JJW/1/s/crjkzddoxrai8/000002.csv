@@ -1,0 +1,33 @@
+"0",""
+"0","library(metagear)"
+"2","package ‘metagear’ was built under R version 3.6.3"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
+"2","metagear 0.6
+"
+"2","** For information on installing/troubleshooting metagear, see:
+"
+"2","**   http://lajeunesse.myweb.usf.edu/metagear/metagear_basic_vignette.html
+"
+"2","
+"
+"2","** metagear system check: current setup supports GUIs [ TRUE ]
+"
+"0","library(here)"
+"2","package ‘here’ was built under R version 3.6.2"
+"2","here() starts at C:/Users/jjw_t/Desktop/GVSP_2020
+"
+"0","metagear::abstract_screener(here::here(""literature_screen_pubmed"",""effort_Jonny.csv""), aReviewer = ""Jonny"", titleColumnName = ""Title"")"
+"2","Error: metagear error in ::(): all abstracts have already been screened,
+                           no more abstracts coded as: not vetted.metagear error in metagear(): all abstracts have already been screened,
+                           no more abstracts coded as: not vetted.metagear error in abstract_screener(): all abstracts have already been screened,
+                           no more abstracts coded as: not vetted.
+"

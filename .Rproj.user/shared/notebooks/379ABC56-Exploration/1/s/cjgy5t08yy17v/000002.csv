@@ -1,0 +1,5 @@
+"0","Raw_factor_data<-read.csv(here::here(""data"", ""raw_data"", ""factors_Xinyi_final.csv""))"
+"0",""
+"0","Raw_factor_data%<>% row_to_names(row_number = 1)"
+"2","Row 1 does not provide unique names. Consider running clean_names() after row_to_names()."
+"0","Raw_factor_data_col<-Raw_factor_data[,-c(36,37,44,54,55,58,59,60,61,62,64,68,70,71,78,82,83,84,87,88,89,90:105)]"
