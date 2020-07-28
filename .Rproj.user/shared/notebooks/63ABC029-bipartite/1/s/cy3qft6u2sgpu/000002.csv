@@ -9,5 +9,34 @@
 "0",""
 "0","new4$Host_species%<>%as.factor()"
 "0","library(Hmisc)"
+"2","package ‘Hmisc’ was built under R version 3.6.3"
+"2","Loading required package: survival
+"
+"2","package ‘survival’ was built under R version 3.6.3"
+"2","Loading required package: Formula
+"
+"2","Registered S3 method overwritten by 'data.table':
+  method           from
+  print.data.table     
+"
+"2","
+Attaching package: ‘Hmisc’
+
+"
+"2","The following object is masked from ‘package:network’:
+
+    is.discrete
+
+"
+"2","The following objects are masked from ‘package:dplyr’:
+
+    src, summarize
+
+"
+"2","The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+"
 "0","filter_host<-subset(new4, Host_species %nin% c(""Mosquito?"", ""Human"", ""Bat"", ""Wild deer?"", ""Wild mammals"", ""Wild ruminants"", """",""?"",""Birds"",""Wild birds"", ""Domestic mammals"", ""Domestic ruminants"", ""Domestic small ruminants"",""Unknown"", ""Humans"" ))"
 "0",""

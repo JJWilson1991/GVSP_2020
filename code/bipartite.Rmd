@@ -218,6 +218,8 @@ sst2<-as.data.frame(st2)
 sst2%<>%filter(Freq>0)
 
 bipartite_D3(sst2, ColourBy = 1, colouroption = "brewer", PrimaryLab = "Reservoir Host Order", SecondaryLab = "Spillover Host Order", SiteNames = "Frequency", filename = "Order_net")
+
+#save_d3_png(ola, "network_order.png")
 ```
 
 ```{r}

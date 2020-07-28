@@ -1,0 +1,4 @@
+"0","save_d3_png(ola, ""helpagain"")
+"
+"2","PhantomJS not found. You can install it with webshot::install_phantomjs(). If it is installed, please make sure the phantomjs executable can be found via the PATH variable.
+"
