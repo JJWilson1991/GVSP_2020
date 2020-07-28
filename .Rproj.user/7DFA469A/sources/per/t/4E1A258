@@ -1,0 +1,26 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1595894850582.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3746414816",
+    "id" : "4E1A258",
+    "lastKnownWriteTime" : 1595897041,
+    "last_content_update" : 1595897041495,
+    "path" : "C:/Users/jjw_t/Desktop/GVSP_2020/code/bipartite.Rmd",
+    "project_path" : "code/bipartite.Rmd",
+    "properties" : {
+        "cursorPosition" : "168,26",
+        "scrollLine" : "161",
+        "tempName" : "Untitled1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 16,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_markdown"
+}

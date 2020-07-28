@@ -1,0 +1,121 @@
+Table 1,,,,,
+Host name,Class,Order,family,genus,species
+Domestic pigs,,Artiodactyla,"Suidae
+",Sus,S. scrofa
+wild boar,,Artiodactyla,"Suidae
+",Sus,S. scrofa
+common warthogs,,Artiodactyla,Suidae,"Phacochoerus
+","Phacochoerus
+"
+bushpigs,,Artiodactyla,Suidae,Potamochoerus,P. larvatus
+Domestic cattle,,Artiodactyla,"Bovidae
+","Bos
+",B. taurus
+yaks,,Artiodactyla,Bovidae,"Bos
+",B. grunniens
+American bison,,Artiodactyla,Bovidae,"Bison
+",B. bison
+European bison,,Artiodactyla,Bovidae,"Bison
+",B. bonasus
+bison,,Artiodactyla,Bovidae,Bison,
+alpaca,,Artiodactyla,Camelidae,Vicugna,V. pacos
+pygmy brocket deer,,Artiodactyla,Cervidae,Mazama,M. nana
+White tailed deer,,Artiodactyla,Cervidae,Odocoileus,O. virginianus
+mule deer,,Artiodactyla,Cervidae,Odocoileus,O. hemionus
+pronghorn,,Artiodactyla,Antilocapridae,Antilocapridae,A. americana
+elk,,Artiodactyla,Cervidae,Cervus,C. canadensis
+mountain goat,,Artiodactyla,Bovidae,Oreamnos,O. americanus
+bighorn sheep,,Artiodactyla,Bovidae,Ovis,O. canadensis
+sheep (Ovies aries),,Artiodactyla,Bovidae,Ovis,O. aries
+goats (Capra hircus),,Artiodactyla,Bovidae,Capra,C. aegagrus
+camelids,,Artiodactyla,Camelidae,,
+"New World camelids ( llama, the alpaca, the guanaco, and the vicuña)",,Artiodactyla,"Camelidae
+","Camelus
+",
+antelope,,Artiodactyla,Bovidae,,
+Eurasian lynx,,Carnivora,Felidae,Lynx,L. lynx
+lion,,Carnivora,Felidae,Panthera,P. leo
+leopard,,Carnivora,Felidae,Panthera,P. pardus
+dogs,,Carnivora,Canidae,Canis,C. lupus
+Horses,,Perissodactyla,Equidae,Equus,E. ferus
+donkeys,,Perissodactyla,Equidae,Equus,E. africanus
+Mules,,Perissodactyla,Equidae,Equus,E. asinus? × E. caballus?
+zebras,,Perissodactyla,Equidae,Equus,
+humans,,Primates,Hominidae,Homo,H. sapiens
+"gallinaceous
+poultry (Galliformes/gamebirds)",,"Galliformes
+","contains five families: Phasianidae , Odontophoridae , Numididae , Cracidae, and Megapodiidae",,
+Lab mice,,Rodentia,Muridae,Mus,M. musculus
+Mammals,Mammalia,,,,
+Carnivora,Mammalia,Carnivora,,,
+Microchiroptera,Mammalia,Chiroptera,,,
+wild cloven-hoofed artiodactyls (Even-toed ungulates),,,,,
+reindeer,,Artiodactyla,"Cervidae
+","Rangifer
+","R. tarandus
+"
+chamois,,Artiodactyla,Bovidae,Rupicapra,R. rupicapra
+llamas,,Artiodactyla,Camelidae,Lama,L. glama
+water buffalo,,Artiodactyla,Bovidae,Bubalus,B. bubalis
+ red deer,,Artiodactyla,Cervidae,Cervus,C. elaphus
+fallow deer,,Artiodactyla,Cervidae,Dama,D. dama
+roe deer,,Artiodactyla,Cervidae,Capreolus,C. capreolus
+sika deer,,Artiodactyla,Cervidae,Cervus,C. nippon
+moufflon,,Artiodactyla,Bovidae,Ovis,O. orientalis
+onager,,Perissodactyla,Equidae,Equus,E. hemionus
+Asian elephant,,Proboscidea,Elephantidae,Elephas,E. maximus
+babirusa,,Artiodactyla,Suidae,Babyrousa,
+"cotton
+rats",,Rodentia,Cricetidae,Sigmodon,
+spiny rats,,Rodentia,Echimyidae,,
+Peromyscus spp,,Rodentia,Cricetidae,Peromyscus,
+rabbit,,Lagomorpha,Leporidae,Oryctolagus,O. cuniculus
+hares,,Lagomorpha,Leporidae,Lepus,
+"Pteropus vampyrus
+",,Chiroptera,Pteropodidae,Pteropus,P. vampyrus
+Pteropus hypomelanus,,Chiroptera,Pteropodidae,Pteropus,P. hypomelanus
+turkey,,"Galliformes
+",Phasianidae,Meleagris,
+Sambar deer,,Artiodactyla,Cervidae,Rusa,R. unicolor
+waterbuck,,Artiodactyla,Bovidae,Kobus,K. ellipsiprymnus
+giraffe,,Artiodactyla,Giraffidae,Giraffa,
+"South
+American camelids (wild guanaco,domesticated llama)",,Artiodactyla,Camelidae,Lama,
+horseshoe bats (Rhinolophus spp.) ,,"Chiroptera
+",Rhinolophidae,Rhinolophus,
+ferrets,,Carnivora,Mustelidae,Mustela,M. putorius
+rodents,Mammalia,Rodentia,,,
+non-human primates,Mammalia,Primates,,,
+American crows,,Passeriformes,Corvidae,Corvus,C. brachyrhynchos
+jays,,Passeriformes,Corvidae,,
+yellow-billed magpies,,Passeriformes,"Corvidae
+",Pica,P. nutalli
+cats,,Carnivora,Felidae,Felis,F. catus
+tree squirrels,,Rodentia,Sciuridae,,
+farmed alligators,,Crocodilia,Alligatoridae,Alligator,
+sand flies (Phlebotominae),,Diptera,"Psychodidae
+",,
+black flies,,Diptera,Simuliidae,,
+mosquitoes,,Diptera,Culicidae,,
+Pygmy hogs,,Artiodactyla,,,
+Goats,,Artiodactyla,,,
+Fox,,Carnivora,,,
+Raccoon dogs,,Carnivora,,,
+Vampire bat,,Chiroptera,,,
+Pine marten,,Carnivora,,,
+Wolf,,Carnivora,,,
+Polecat,,Carnivora,,,
+Badger,,Carnivora,,,
+Raccoon,,Carnivora,,,
+Skunk,,Carnivora,,,
+Brazilian free-tailed bat,,Chiroptera,,,
+African buffalo,,Artiodactyla,,,
+Impala,,Artiodactyla,,,
+Kudu,,Artiodactyla,,,
+Wild rabbits,,Lagomorpha,,,
+Domestic rabbits,,Lagomorpha,,,
+Flying fox,,Chiroptera,,,
+Horseshoe bats,,Chiroptera,,,
+Mink,,Carnivora,,,
+Norway rats,,Rodentia,,,
+Mule deer,,Artiodactyla,,,

@@ -1,0 +1,5 @@
+"0","t3<-sortweb(t2, sort.order=""seq"", sequence=sequence)
+"
+"2","Error in `[.default`(web, sequence$seq.lower, sequence$seq.higher) : 
+  subscript out of bounds
+"

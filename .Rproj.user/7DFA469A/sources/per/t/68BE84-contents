@@ -1,0 +1,146 @@
+---
+title: "Exploration2"
+author: "Xinyi Xu"
+date: "7/24/2020"
+output: html_document
+---
+---
+title: "Exploratory anlaysis"
+author: "JJW"
+date: "10/07/2020"
+output: html_document
+---
+
+library(ggplot2)
+library(tidyverse)
+library(here)
+library(janitor)
+library(magrittr)
+library(visdat)
+setwd("~/Documents/GVSP 2020/factors/R")
+
+
+Raw_factor_data1<-read.csv("factors_Xinyi_Jonny_Combined2.csv")
+Raw_factor_data2<-Raw_factor_data1%>% row_to_names(row_number = 1)
+Raw_factor_data_col<-Raw_factor_data2[,-c(42,43,93:111)] 
+Raw_factor_data<-Raw_factor_data2[-c(107:110),-c(42,43,93:111)] 
+
+#use "Raw_factor_data" for the following data manipulation
+
+
+
+#Virus_Name, grouped into 25 Levels
+Raw_factor_data$Virus_Name%<>%as.character()
+
+Raw_factor_data$Virus_Name[grep("Hepatitis", Raw_factor_data$Virus_Name)] <- "Hepatitis E virus"
+Raw_factor_data$Virus_Name[grep("Epizootic", Raw_factor_data$Virus_Name)] <- "Epizootic hemorrhagic disease virus" 
+Raw_factor_data$Virus_Name[grep("Rabbit", Raw_factor_data$Virus_Name)] <- "Rabbit hemorrhagic disease virus 2"
+Raw_factor_data$Virus_Name[grep("Bovine viral diarrhea virus", Raw_factor_data$Virus_Name)] <- "Bovine viral diarrhea virus"
+Raw_factor_data$Virus_Name[grep("Swine influenza", Raw_factor_data$Virus_Name)] <- "Swine influenza virus"
+Raw_factor_data$Virus_Name[grep("Swine Influenza", Raw_factor_data$Virus_Name)] <- "Swine influenza virus"
+
+Raw_factor_data$Virus_Name%<>%as.factor()
+
+#draw Family bar chart categorized by Genus 
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Family, fill=Genus), position = "stack", width=0.7) +
+  theme(axis.text.x = element_text(angle = 90, size=7))  +
+    coord_flip()
+
+#draw Family vs Name col chart
+ggplot(Raw_factor_data)+
+  geom_col(mapping=aes(Virus_Name, Family), position = "dodge", width=0.7) + 
+  theme(axis.text.x = element_text(angle = 90, size=7))  +
+    coord_flip()
+
+
+#Spillover Direction, grouped into W-D, D-W, D-W, W-D, Unclear
+
+Raw_factor_data$'Spillover Direction'%<>%as.character() 
+Raw_factor_data$'Spillover Direction'[grep(",", Raw_factor_data$'Spillover Direction')] <- "D-W, W-D" 
+Raw_factor_data$'Spillover Direction'%<>%as.factor()
+
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Family, Raw_factor_data$'Spillover Direction', color = Raw_factor_data$'Spillover Direction')) +
+  theme(axis.text.x = element_text(angle = 90, size=7))  
+
+
+#Transmission_Mode, grouped into 4 levels
+Raw_factor_data$Transmission_Mode%<>%as.character() 
+
+Raw_factor_data$Transmission_Mode[grep("Direct contact, ", Raw_factor_data$Transmission_Mode)] <- "Direct/Indirect" 
+Raw_factor_data$Transmission_Mode[grep("Indirect ", Raw_factor_data$Transmission_Mode)] <- "Indirect" 
+Raw_factor_data$Transmission_Mode[grep("Direct ", Raw_factor_data$Transmission_Mode)] <- "Direct" 
+
+Raw_factor_data$Transmission_Mode%<>%as.factor()
+
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Virus_Name, Transmission_Mode,  color = Family))
+  
+
+
+
+#Transmission_Route, grouped into 4 levels
+#graph of Transmission_Mode vs Transmission_Route
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Transmission_Mode, Transmission_Route, color = Transmission_Mode)) + theme(axis.text.x = element_text(angle = 90, size=7))  
+  
+  # add a bar chart here!
+  
+
+
+
+
+#Host_Range, grouped into 2 levels: Broad and Narrow
+##Raw_factor_data$Host_Range%<>%as.character() 
+##Raw_factor_data$Host_Range[grep("Broad", Raw_factor_data$Host_Range)] <- "Broad" 
+##Raw_factor_data$Host_Range[grep("Narrow", Raw_factor_data$Host_Range)] <- "Narrow" 
+##Raw_factor_data$Host_Range%<>%as.factor()
+
+#graphs of host range
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Host_Range, Number_of_order_affected, color = Host_Range)) +
+  theme(axis.text.x = element_text(angle = 90, size=7))  
+  
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Host_Range, Number_of_family_affected, color = Host_Range)) +
+  theme(axis.text.x = element_text(angle = 90, size=7))  
+  
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Number_of_order_affected, Number_of_family_affected, color = Host_Range)) +
+  theme(axis.text.x = element_text(angle = 90, size=7))  
+
+
+#Extrinsic factors
+#do something simple at least for now
+Raw_factor_data_extrinsic<-Raw_factor_data_col[c(1:109),c(1,42:90)]
+
+#Raw_factor_data_col1<-Raw_factor_data1[,-c(36,37,44,54,55,58,59,60,61,62,64,68,70,71,78,82,83,84,87,88,89,90:105)]
+graf<-Raw_factor_data_extrinsic
+graf%<>%as.data.frame()
+
+graf%<>%t()  
+#failed to convert percentage numbers ooops
+
+colnames(graf)[1]<-"Factors"
+colnames(graf)[2]<-"Percentage"
+
+graf%<>%as.data.frame()
+
+graf$Percentage%<>%as.character()
+graf$Percentage%<>%str_remove("%")
+graf$Percentage%<>%as.numeric()
+
+
+#graph of extrinsic factors
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Virus_Name, 'human-animal contact')) +
+  theme(axis.text.x = element_text(angle = 90, size=7)) 
+
+
+ggplot(graf, aes(Factors, Percentage))+geom_bar(stat = "identity")+ theme(axis.text.x = element_text(angle = 90, size=7))
+
+
+#visdat::vis_miss(Raw_factor_data_col)
+
+#pairs(Raw_factor_data_col[,c(36:40)])
