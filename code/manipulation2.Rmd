@@ -1,0 +1,358 @@
+---
+title: "Exploration2"
+author: "Xinyi Xu"
+date: "7/24/2020"
+output: html_document
+---
+---
+title: "Exploratory anlaysis"
+author: "JJW"
+date: "10/07/2020"
+output: html_document
+---
+
+library(ggplot2)
+library(tidyverse)
+library(here)
+library(janitor)
+library(magrittr)
+library(visdat)
+setwd("~/Documents/GVSP 2020/factors/R")
+
+#"factors_Xinyi_Jonny_Combined3.csv" is the most updated raw data
+Raw_factor_data1<-read.csv("factors_Xinyi_Jonny_Combined3.csv")
+Raw_factor_data2<-Raw_factor_data1%>% row_to_names(row_number = 1)
+Raw_factor_data_col<-Raw_factor_data2[,-c(42,43,93:111)] 
+Raw_factor_data<-Raw_factor_data2[-c(107:110),-c(42,43,93:111)] 
+
+#use "Raw_factor_data" for the following data manipulation
+### "Raw_factor_data" doesnt include summary rows 
+
+
+
+#Virus_Name, grouped into 25 Levels
+Raw_factor_data$Virus_Name%<>%as.character()
+
+Raw_factor_data$Virus_Name[grep("Hepatitis", Raw_factor_data$Virus_Name)] <- "Hepatitis E virus"
+Raw_factor_data$Virus_Name[grep("Epizootic", Raw_factor_data$Virus_Name)] <- "Epizootic hemorrhagic disease virus" 
+Raw_factor_data$Virus_Name[grep("Rabbit", Raw_factor_data$Virus_Name)] <- "Rabbit hemorrhagic disease virus 2"
+Raw_factor_data$Virus_Name[grep("Bovine viral diarrhea virus", Raw_factor_data$Virus_Name)] <- "Bovine viral diarrhea virus"
+Raw_factor_data$Virus_Name[grep("Swine influenza", Raw_factor_data$Virus_Name)] <- "Swine influenza virus"
+Raw_factor_data$Virus_Name[grep("Swine Influenza", Raw_factor_data$Virus_Name)] <- "Swine influenza virus"
+
+Raw_factor_data$Virus_Name%<>%as.factor()
+
+#rank by viral family, stored in vfamily
+vfamily <-data.frame(table(Raw_factor_data$Family))
+
+
+
+str_order(vfamily$Freq, decreasing = TRUE, numeric=TRUE) 
+  vfamily$Var1 <- factor(vfamily$Var1, levels = vfamily$Var1[order(vfamily$Freq)])
+
+# Reorder following a precise order
+vfamily2 <- Raw_factor_data %>%
+  mutate(Family = fct_relevel(Family, 
+            "Flaviviridae", "Picornaviridae", "Rhabdoviridae", 
+            "Reoviridae", "Hepeviridae", "Paramyxoviridae", 
+            "Orthomyxoviridae", "Peribunyaviridae", "Arteriviridae", "Caliciviridae", "Coronaviridae", "Astroviridae", "Togaviridae"))
+
+ggplot(vfamily2, mapping=aes(x= Family, fill = Genus))+ geom_bar() + 
+  theme (axis.text.x = element_text(angle = 90, size=8)) +  coord_flip() + theme_bw()+
+  theme(panel.border = element_blank(), axis.text.x = element_text(angle = 90, size=8), axis.title = element_text(size=10, face = "bold"), legend.title = element_text(face = "bold.italic", size=9), legend.text = element_text(size=8), plot.title = element_text(hjust = 0.6, face = "bold", size = (12) ))  +
+labs(y="Count", x = "Family", title="Number of virus in each family grouped by genus")
+    
+#draw Family bar chart grouped by Genus 
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Family, fill=Genus), position = "stack", width=0.7) + 
+  theme_bw() + theme(panel.border = element_blank(), axis.text.x = element_text(angle = 90, size=8), axis.title = element_text(size=10, face = "bold"), legend.title = element_text(face = "bold.italic", size=9), legend.text = element_text(size=8), plot.title = element_text(hjust = 0.6, face = "bold", size = (12) ))  +
+    coord_flip() + labs(y="Count", x = "Family", title="Number of virus in each family grouped by genus")
+
+
+#draw Family vs Name count chart
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Virus_Name, Family, color=Family)) + 
+  theme(axis.text.x = element_text(angle = 90, size=9), axis.text.y = element_text(size=9), axis.title = element_text(size=11, face = "bold"), legend.title = element_text(size=9, face = "bold.italic"), legend.text = element_text(size=8), plot.title = element_text(hjust = 0.5, face = "bold", size = (13) ))  +
+    coord_flip() + labs(x="Virus Name", y = "Family", title="Name and family of the virus")
+
+
+#order the virus name, stored in name2
+name2 <-data.frame(table(Raw_factor_data$Virus_Name))
+
+str_order(name2$Freq, decreasing = TRUE, numeric=TRUE) 
+  name2$Var1 <- factor(name2$Var1, levels = name2$Var1[order(name2$Freq)])
+  
+#plot
+ggplot(name2)+
+  geom_col(mapping=aes(Var1, Freq)) + 
+  theme(axis.text.x = element_text(angle = 90, size=16)) +   coord_flip() +  theme_bw() 
+  
+  
+
+#Spillover Direction, grouped into 4 levels W->D, D->W, Both, Unclear
+
+Raw_factor_data$'Spillover Direction'%<>%as.character() 
+
+Raw_factor_data$'Spillover Direction'[grep(",", Raw_factor_data$'Spillover Direction')] <- "Both" 
+Raw_factor_data$'Spillover Direction'[grep("W-D", Raw_factor_data$'Spillover Direction')] <- "W->D" 
+Raw_factor_data$'Spillover Direction'[grep("D-W", Raw_factor_data$'Spillover Direction')] <- "D->W" 
+Raw_factor_data$'Spillover Direction'%<>%as.factor()
+
+
+#spillover direction vs count, bar chart
+#read new file for spillover direction
+spillover1 <-read.csv("spillover.csv")
+
+#order the dataframe
+  str_order(spillover1$Count, decreasing = TRUE, numeric=TRUE) 
+
+  spillover1$"Spillover.Direction" <- factor(spillover1$"Spillover.Direction", levels = spillover1$"Spillover.Direction"[order(spillover1$Count)])
+
+
+spillover1$Label <- spillover1 %>% 
+  str_glue_data("{Count}\n({Percentage}) ") 
+
+  
+#plot
+ggplot(spillover1 ) +
+  geom_col(mapping = aes(x=Count  , y= Spillover.Direction, fill =Spillover.Direction), position = "dodge", width=0.5) + theme_bw() +
+    geom_text(aes(Count, Spillover.Direction, label = Label),  nudge_x =4, size = 4)+
+  theme(panel.border = element_blank(), axis.text.x = element_text(angle = 90, size=11), ) +
+    theme(axis.text.y = element_text(size=11), axis.title = element_text(size=11, face = "bold"), legend.title = element_text( size=9, face = "bold.italic"), legend.text = element_text(size=8, face="italic"), plot.title = element_text(hjust = 0.6,face = "bold", size = (13) ))  + labs(y="Spillover direction", x= "Count", title="Spillover Direction") 
+
+
+
+#Transmission_Mode, grouped into 3 levels: Direct Direct/Indirect Indirect
+Raw_factor_data$Transmission_Mode%<>%as.character() 
+
+Raw_factor_data$Transmission_Mode[grep("Direct contact, ", Raw_factor_data$Transmission_Mode)] <- "Direct/Indirect" 
+Raw_factor_data$Transmission_Mode[grep("Indirect ", Raw_factor_data$Transmission_Mode)] <- "Indirect" 
+Raw_factor_data$Transmission_Mode[grep("Direct ", Raw_factor_data$Transmission_Mode)] <- "Direct" 
+
+Raw_factor_data$Transmission_Mode%<>%as.factor()
+
+
+#graph of Transmission_Mode 
+Transm <- Raw_factor_data %>%
+  mutate(Transmission_Mode = fct_relevel(Transmission_Mode, "Direct/Indirect", "Indirect", "Direct"))
+
+ggplot(Transm, mapping=aes(Transmission_Mode, fill=Transmission_Mode))+ geom_bar(width=0.5)+ theme_bw() + theme(panel.border = element_blank(), legend.position = "none") +
+  theme(plot.title = element_text(hjust = 0.5,face = "bold", size = (12) )) +
+  theme(axis.text.x = element_text(size=10)) + 
+  labs(x="Transmission Mode", y= "Count", title="Types of Transmission Mode") 
+  
+  
+#Transmission count,  bar chart
+Transmission1 <-read.csv("Transmission.csv")
+
+ggplot(Transmission1) +
+  geom_col(mapping = aes(x= Transmission.Mode , y= Count , fill =Transmission.Route), width=0.5) +
+  theme(axis.text.x = element_text(angle = 90, size=9)) 
+  
+Transmission2 <-read.csv("Transm_D_I.csv")
+ggplot(Transmission2) +
+  geom_col(mapping = aes(x= Transmission.Mode, y= Count, fill=Transmission.Mode), width=0.5)+ theme_bw() + theme(legend.title = element_blank())+
+ theme(panel.border = element_blank(), axis.text.x = element_text(size=11)) + 
+theme(axis.text.y = element_text(size=11), axis.title = element_text(size=11, face = "bold"), legend.title = element_text( size=9, face = "bold.italic"), plot.title = element_text(hjust = 0.4,face = "bold", size = (13) ))  + labs(x="Transmission Mode", y= "Count", title="Transmission") 
+
+
+
+  
+#Transmission count simple bar chart, pic used for presentation
+#rank based on transmission route freq
+str_order(Transmission1$Count, decreasing = TRUE, numeric=TRUE) 
+
+  Transmission1$"Transmission.Route"<- factor(Transmission1$"Transmission.Route", levels = Transmission1$"Transmission.Route"[order(Transmission1$Count)])
+
+#plot
+ggplot(Transmission1) +
+  geom_col(mapping = aes(x= Transmission.Mode , y= Count , fill =Transmission.Route), position = "dodge", width=0.4) + theme_bw() + theme(legend.title = element_blank())+
+ theme(panel.border = element_blank(), axis.text.x = element_text(size=11)) + 
+theme(axis.text.y = element_text(size=11), axis.title = element_text(size=11, face = "bold"), legend.title = element_text( size=9, face = "bold.italic"), legend.text = element_text(size=8, face="italic"), plot.title = element_text(hjust = 0.6,face = "bold", size = (13) ))  + labs(x="Transmission Mode", y= "Count", title="Transmission") 
+
+
+
+#Host_Range, grouped into 2 levels: Broad and Narrow
+#definition for Broad: hosts >= 2 orders
+##Raw_factor_data$Host_Range%<>%as.character() 
+##Raw_factor_data$Host_Range[grep("Broad", Raw_factor_data$Host_Range)] <- "Broad" 
+##Raw_factor_data$Host_Range[grep("Narrow", Raw_factor_data$Host_Range)] <- "Narrow" 
+##Raw_factor_data$Host_Range%<>%as.factor()
+
+#graphs of host range
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Host_Range, fill = Host_Range),width=0.4, position = "dodge")+ theme_bw() + theme(legend.title = element_blank())+ theme(panel.border = element_blank(), axis.text.x = element_text(size=11), legend.position = "none")+
+theme(axis.text.y = element_text(size=11), axis.title = element_text(size=11, face = "bold"), legend.title = element_text( size=9, face = "bold.italic"), legend.text = element_text(size=8, face="italic"), plot.title = element_text(hjust = 0.5,face = "bold", size = (13) ))  + labs(x="Types of Host Range", y= "Count", title="Host Range") 
+  
+  ggplot(Transmission1) +
+  geom_col(mapping = aes(x= Transmission.Mode , y= Count , fill =Transmission.Route), position = "dodge", width=0.4) + theme_bw() + theme(legend.title = element_blank())+
+ theme(panel.border = element_blank(), axis.text.x = element_text(size=11)) + 
+theme(axis.text.y = element_text(size=11), axis.title = element_text(size=11, face = "bold"), legend.title = element_text( size=9, face = "bold.italic"), legend.text = element_text(size=8, face="italic"), plot.title = element_text(hjust = 0.6,face = "bold", size = (13) ))  + labs(x="Transmission Mode", y= "Count", title="Transmission") 
+  
+  
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Transmission_Mode, fill = Host_Range),width=0.5, position = "dodge")
+  
+
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Host_Range, Number_of_family_affected, color = Host_Range)) +
+  theme(axis.text.x = element_text(angle = 90, size=7))  
+  
+###graphs of associations between viral host orders and families, grouped by host range
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Number_of_order_affected, Number_of_family_affected, color = Host_Range)) +
+  theme(axis.text = element_text(size=9), axis.title = element_text(size=11, face = "bold"), legend.title = element_text( size=9, face = "bold.italic"), legend.text = element_text(size=8, face="italic"), plot.title = element_text(hjust = 0.6,face = "bold", size = (13) ))  + labs(x="Number of host orders", y = "Number of host families", title="Associations between viral host orders and \n families grouped by host range") 
+
+
+#Extrinsic factors
+# read the new file for extrinsic factors, filter key factors > 15%
+
+Extrinsic_factors1<-read.csv("Extrinsic_factors.csv")### data: human-animal contact including hunting
+Extrinsic_factors1 <- filter(Extrinsic_factors1, Percentage>0.15) 
+
+Extrinsic_factors2<-read.csv("Extrinsic_factors_no_hunting_in_HAcontact.csv") ### data: human-animal contact not including hunting 
+Extrinsic_factors2 <- filter(Extrinsic_factors2, Percentage>0.15) 
+
+#order the dataframe Extrinsic_factors1
+  str_order(Extrinsic_factors1$Percentage, decreasing = TRUE, numeric=TRUE) 
+
+  Extrinsic_factors1$"Extrinsic.Factors" <- factor(Extrinsic_factors1$"Extrinsic.Factors", levels = Extrinsic_factors1$"Extrinsic.Factors"[order(Extrinsic_factors1$Percentage)])
+
+#order the dataframe Extrinsic_factors2
+  str_order(Extrinsic_factors2$Count, decreasing = TRUE, numeric=TRUE) 
+
+  Extrinsic_factors2$"Extrinsic.Factors" <- factor(Extrinsic_factors2$"Extrinsic.Factors", levels = Extrinsic_factors2$"Extrinsic.Factors"[order(Extrinsic_factors2$Count)]) 
+  
+ 
+###Extrinsic_factors2, data: human-animal contact not including hunting 
+
+###creat a new column for "Label"
+Extrinsic_factors2$Label <- Extrinsic_factors2 %>% 
+  str_glue_data("{Count}\n({Percentage2}) ") 
+  
+#draw bar chart for key extrinsic factors
+ggplot(Extrinsic_factors2) +
+  geom_col(mapping = aes(x=Extrinsic.Factors, y= Count, fill=Extrinsic.Factors),position = "dodge", width=0.5, show.legend = FALSE) +  
+  geom_text(aes(Extrinsic.Factors, Count, label = Label),  nudge_y = 4, size = 3)+
+  theme_bw() + 
+    theme(panel.border = element_blank(), axis.text.x = element_text(angle = 90, size=10), axis.text.y = element_text(size=12), plot.title = element_text(hjust = 0.3,face = "bold", size = (13) ))  + labs(y="Count", x= "Extrinsic factors", title="Key Extrinsic Factors") +
+   coord_flip() 
+   
+   
+ggplot(Extrinsic_factors2) +
+  geom_col(mapping = aes(x=Extrinsic.Factors, y= Count),position = "dodge", width=0.5, show.legend = FALSE) +
+  theme(axis.text.x = element_text(angle = 90, size=10), axis.text.y = element_text(size=10),plot.title = element_text(hjust = 0.6,face = "bold", size = (13) ))  + labs(y="Count", x= "Extrinsic factors", title="Key extrinsic factors") +
+   coord_flip() 
+
+
+#production_type
+production1 <-read.csv("production_type.csv")
+
+ggplot(production1 ) +
+  geom_col(mapping = aes(x= Types , y= Count , fill =Types), width=0.4) +
+  theme(axis.text.x = element_text(size=9)) +
+  theme_bw() + theme(legend.title = element_blank())+ theme(panel.border = element_blank(), axis.text.x = element_text(size=11), legend.position = "none")+
+theme(axis.text.y = element_text(size=11), axis.title = element_text(size=11, face = "bold"), plot.title = element_text(hjust = 0.5,face = "bold", size = (13) ))  + labs(x="Types of livestock production system", y= "Count", title="Livestock production system") 
+  
+
+
+
+#correlations
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Transmission_Mode, fill = `livestock- and domestic-wildlife interface`),width=0.5, position = "dodge")
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Host_Range, fill = `livestock- and domestic-wildlife interface`),width=0.5, position = "dodge")
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(WildDom, fill= `livestock- and domestic-wildlife interface`),width=0.5, position = "dodge")
+
+
+
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`livestock- and domestic-wildlife interface`, fill= `local livestock production`),width=0.4, position = "dodge")
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`livestock- and domestic-wildlife interface`, fill= `industrial livestock production`),width=0.4, position = "dodge")
+  
+  
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`local livestock production`, fill = `Spillover Direction`),width=0.4, position = "dodge")
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`industrial livestock production`,fill = `Spillover Direction`),width=0.4, position = "dodge")
+  
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`local livestock production`, fill = `Incomplete vaccination coverage `),width=0.4, position = "dodge")
+    
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`industrial livestock production`, fill = `Incomplete vaccination coverage `),width=0.4, position = "dodge")
+  
+
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Host_Range, fill = `reservoir epidemic`),width=0.4, position = "dodge")
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`Spillover Direction`, fill = `reservoir epidemic`),width=0.4, position = "dodge")
+
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`Spillover Direction`, fill = Mortality_Rate), width=0.4, position = "dodge")
+
+
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Mortality_Rate, fill=Mortality_Rate)) 
+  
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Mortality_Rate, Family)) 
+  
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Mortality_Rate, Genus))   
+
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Mortality_Rate, fill= Segmented)) 
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(Envelope, fill = Mortality_Rate)) 
+  
+  
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`local livestock production`, fill = `provisioning`),width=0.4, position = "dodge")
+    
+ggplot(Raw_factor_data)+
+  geom_bar(mapping=aes(`industrial livestock production`, fill = `provisioning`),width=0.4, position = "dodge")
+  
+ggplot(Raw_factor_data)+
+  geom_jitter(mapping=aes(`local livestock production`,  `industrial livestock production`, color = provisioning))
+
+#Raw_factor_data_col1<-Raw_factor_data1[,-c(36,37,44,54,55,58,59,60,61,62,64,68,70,71,78,82,83,84,87,88,89,90:105)]
+graf<-Raw_factor_data_extrinsic
+graf%<>%as.data.frame()
+
+graf%<>%t()  
+#failed to convert percentage numbers ooops
+
+colnames(graf)[1]<-"Factors"
+colnames(graf)[2]<-"Percentage"
+
+graf%<>%as.data.frame()
+
+graf$Percentage%<>%as.character()
+graf$Percentage%<>%str_remove("%")
+graf$Percentage%<>%as.numeric()
+
+
+#graph of extrinsic factors
+ggplot(Raw_factor_data)+
+  geom_count(mapping=aes(Virus_Name, 'human-animal contact')) +
+  theme(axis.text.x = element_text(angle = 90, size=7)) 
+
+
+ggplot(graf, aes(Factors, Percentage))+geom_bar(stat = "identity")+ theme(axis.text.x = element_text(angle = 90, size=7))
+
+
+#visdat::vis_miss(Raw_factor_data_col)
+
+#pairs(Raw_factor_data_col[,c(36:40)])
