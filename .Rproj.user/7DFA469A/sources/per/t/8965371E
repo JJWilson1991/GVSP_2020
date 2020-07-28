@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1595972905128.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "8965371E",
+    "lastKnownWriteTime" : 3268489259856,
+    "last_content_update" : 1595972905128,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "4AF4352C",
+        "caption" : "spillorder2",
+        "contentUrl" : "grid_resource/gridviewer.html?env=&obj=spillorder2&cache_key=4AF4352C",
+        "displayedObservations" : "198",
+        "environment" : "",
+        "expression" : "spillorder2",
+        "object" : "spillorder2",
+        "preview" : "0",
+        "totalObservations" : "198",
+        "variables" : "3"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 10,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}

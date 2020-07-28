@@ -140,7 +140,7 @@ var data=[["African buffalo","Cattle",9],
  function sort(sortOrder){
                     return function(a,b){ return d3.ascending(sortOrder.indexOf(a),sortOrder.indexOf(b)) }
                   }
-var color = {'Unlinked':'#3366CC','African buffalo':'rgb(56,43,61)','American bison':'rgb(56,43,61)','Cattle':'rgb(56,43,61)','Elk':'rgb(56,43,61)','Goats':'rgb(56,43,61)','Impala':'rgb(56,43,61)','Kudu':'rgb(56,43,61)','Mule deer':'rgb(56,43,61)','Pigs':'rgb(56,43,61)','Pygmy hogs':'rgb(56,43,61)','Red deer':'rgb(56,43,61)','Roe deer':'rgb(56,43,61)','Sheep':'rgb(56,43,61)','Water buffalo':'rgb(56,43,61)','White-tailed deer':'rgb(56,43,61)','Wild boar':'rgb(56,43,61)','Badger':'rgb(56,43,61)','Dog':'rgb(56,43,61)','Fox':'rgb(56,43,61)','Mink':'rgb(56,43,61)','Pine marten':'rgb(56,43,61)','Polecat':'rgb(56,43,61)','Raccoon':'rgb(56,43,61)','Raccoon dogs':'rgb(56,43,61)','Skunk':'rgb(56,43,61)','Wolf':'rgb(56,43,61)','Brazilian free-tailed bat':'rgb(56,43,61)','Flying fox':'rgb(56,43,61)','Horseshoe bats':'rgb(56,43,61)','Vampire bat':'rgb(56,43,61)','Domestic rabbits':'rgb(56,43,61)','Wild rabbits':'rgb(56,43,61)','Horse':'rgb(56,43,61)','Norway rats':'rgb(56,43,61)'};
+var color = {'Unlinked':'#3366CC','Cattle':'rgb(56,43,61)','White-tailed deer':'rgb(56,43,61)','African buffalo':'rgb(56,43,61)','Alpine chamois':'rgb(56,43,61)','Alpine ibex':'rgb(56,43,61)','Asiatic black bears':'rgb(56,43,61)','Deer':'rgb(56,43,61)','Eland':'rgb(56,43,61)','Elk':'rgb(56,43,61)','European bison':'rgb(56,43,61)','Fallow deer':'rgb(56,43,61)','Malayan sun bear ':'rgb(56,43,61)','Mongolian gazelle':'rgb(56,43,61)','Mouflon':'rgb(56,43,61)','Mule deer':'rgb(56,43,61)','Red deer':'rgb(56,43,61)','Roe deer':'rgb(56,43,61)','Sable antelope':'rgb(56,43,61)','Sambar deer':'rgb(56,43,61)','Waterbuck':'rgb(56,43,61)','Wild boar':'rgb(56,43,61)','Goat':'rgb(56,43,61)','Horse':'rgb(56,43,61)','Pig':'rgb(56,43,61)','Sheep':'rgb(56,43,61)','Grant's gazelle':'rgb(56,43,61)','Impala':'rgb(56,43,61)','Wildbeest':'rgb(56,43,61)','Mink ':'rgb(56,43,61)','Mongoose':'rgb(56,43,61)','Wild hogs':'rgb(56,43,61)','Camel':'rgb(56,43,61)','Dog':'rgb(56,43,61)','Donkey':'rgb(56,43,61)','Wild rabbits':'rgb(56,43,61)','Domestic rabbits':'rgb(56,43,61)','Cotton-tailed rabbit':'rgb(56,43,61)','Coyote':'rgb(56,43,61)','Elephants':'rgb(56,43,61)','Giraffes':'rgb(56,43,61)','Goats':'rgb(56,43,61)','Lion':'rgb(56,43,61)','Peccary':'rgb(56,43,61)','Pocket Gopher':'rgb(56,43,61)','Raccoon':'rgb(56,43,61)','Roan antelope':'rgb(56,43,61)','Zebra':'rgb(56,43,61)'};
 
 
 
@@ -154,8 +154,7 @@ var g1 = svg.append("g").attr("transform","translate(325,50)");
                          .height(400)
                          .width(200)
                          .barSize(35)
-                         .fill(d=>color[d.primary])
-.sortPrimary(sort(["African buffalo","American bison","Cattle","Elk","Goats","Impala","Kudu","Mule deer","Pigs","Pygmy hogs","Red deer","Roe deer","Sheep","Water buffalo","White-tailed deer","Wild boar","Badger","Dog","Fox","Mink","Pine marten","Polecat","Raccoon","Raccoon dogs","Skunk","Wolf","Brazilian free-tailed bat","Flying fox","Horseshoe bats","Vampire bat","Domestic rabbits","Wild rabbits","Horse","Norway rats"]))
+                         .fill(d=>color[d.secondary])
 .orient("vertical");
 
 g1.call(bp1);g1.append("text")

@@ -1,0 +1,33 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1595974840248.000,
+    "dirty" : false,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "0",
+    "id" : "CD4B3E32",
+    "lastKnownWriteTime" : 1595973719,
+    "last_content_update" : 1595974840248,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "cacheKey" : "7D165B1A",
+        "caption" : "b",
+        "contentUrl" : "grid_resource/gridviewer.html?env=_rs_no_env&obj=&cache_key=7D165B1A",
+        "displayedObservations" : "34",
+        "environment" : "_rs_no_env",
+        "expression" : "structure(list(x = structure(c(1L, 2L, 5L, 8L, 11L, 14L, 15L,  17L, 19L, 22L, 25L, 26L, 27L, 30L, 31L, 32L, 3L, 6L, 10L, 16L,  20L, 21L, 23L, 24L, 28L, 34L, 4L, 9L, 13L, 29L, 7L, 33L, 12L,  18L), .Label = c(\"African buffalo\", \"American bison\", \"Badger\",  \"Brazilian free-tailed bat\", \"Cattle\", \"Dog\", \"Domestic rabbits\",  \"Elk\", \"Flying fox\", \"Fox\", \"Goats\", \"Horse\", \"Horseshoe bats\",  \"Impala\", \"Kudu\", \"Mink\", \"Mule deer\", \"Norway rats\", \"Pigs\",  \"Pine marten\", \"Polecat\", \"Pygmy hogs\", \"Raccoon\", \"Raccoon dogs\",  \"Red deer\", \"Roe deer\", \"Sheep\", \"Skunk\", \"Vampire bat\", \"Water buffalo\",  \"White-tailed deer\", \"Wild boar\", \"Wild rabbits\", \"Wolf\"), class = \"factor\")), row.names = c(NA,  -34L), class = \"data.frame\")",
+        "object" : "",
+        "preview" : "0",
+        "totalObservations" : "34",
+        "variables" : "1"
+    },
+    "read_only" : false,
+    "read_only_alternatives" : [
+    ],
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_dataframe"
+}
