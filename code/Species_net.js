@@ -140,7 +140,7 @@ var data=[["African buffalo","Cattle",9],
  function sort(sortOrder){
                     return function(a,b){ return d3.ascending(sortOrder.indexOf(a),sortOrder.indexOf(b)) }
                   }
-var color = {'Unlinked':'#3366CC','African buffalo':'green','Cattle':'green','Raccoon':'red','ch':'yellow','la':'blue','pe':'purple','ro':'black'};
+var color = {'Unlinked':'#3366CC','African buffalo':'green','Cattle':'green','American bison':'green','Elk':'green','Goats':'green','Impala':'green','Kudu':'green','Mule deer':'green','Pigs':'green','Pygmy hogs':'green','Red deer':'green','Roe deer':'green','Sheep':'green','Water buffalo':'green','White-tailed deer':'green','Wild boar':'green','Raccoon':'purple','Badger':'purple','Dog':'purple','Fox':'purple','Mink':'purple','Pine marten':'purple','Polecat':'purple','Raccoon dogs':'purple','Skunk':'purple','Wolf':'purple','Brazilian free-tailed bat':'orange','Flying fox':'orange','Horseshoe bats':'orange','Vampire bat':'orange','Domestic rabbits':'pink','Wild rabbits':'pink','Horse':'yellow','Norway rats':'blue'};
 
 
 
@@ -162,16 +162,16 @@ var g1 = svg.append("g").attr("transform","translate(325,50)");
 g1.call(bp1);g1.append("text")
                         .attr("x",-50).attr("y",-8)
                         .style("text-anchor","middle")
-                        .text("Primary");
+                        .text("Reservoir Host");
                         g1.append("text")
                         .attr("x", 250)
                         .attr("y",-8).style("text-anchor","middle")
-                        .text("Secondary");
+                        .text("Spillover Host");
                         g1.append("text")
                         .attr("x",100).attr("y",-25)
                         .style("text-anchor","middle")
                         .attr("class","header")
-                        .text("Freq");
+                        .text("");
 
  g1.selectAll(".mainBars")
                         .on("mouseover",mouseover)

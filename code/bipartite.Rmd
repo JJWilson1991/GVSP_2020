@@ -201,12 +201,21 @@ ch<-unique(nest_o$data[[3]]$Host_species)
 la<-unique(nest_o$data[[4]]$Host_species)
 pe<-unique(nest_o$data[[5]]$Host_species)
 ro<-unique(nest_o$data[[6]]$Host_species)
-  
-  ManualColours<- c(`African buffalo`= "green",Cattle='green',Raccoon='red', ch='yellow', la="blue",pe="purple", ro="black")
+
+Man<-c("red","orange","yellow","green", "blue", "purple")
+names(Man)<-c(ar,ca,ch,la,pe,ro)  
+
+  ManualColours<- c(`African buffalo`= "green",Cattle='green', `American bison`="green",  Elk="green", Goats="green", Impala="green", Kudu="green", `Mule deer`="green", Pigs="green",        `Pygmy hogs`="green", `Red deer`="green", `Roe deer`="green", Sheep="green",  `Water buffalo`="green", `White-tailed deer`="green",`Wild boar`= "green",       
+Raccoon="purple", Badger="purple", Dog="purple", Fox="purple",  Mink="purple", `Pine marten`="purple",  Polecat="purple", `Raccoon dogs`="purple", Skunk="purple", Wolf="purple",
+`Brazilian free-tailed bat`="orange", `Flying fox`="orange", `Horseshoe bats`="orange",  `Vampire bat`="orange",
+`Domestic rabbits`="pink", `Wild rabbits`="pink",
+Horse= "yellow",
+`Norway rats`= "blue") 
+                  
 
 pp<-orders4[,c(1,2,3)]
 
-bipartite_D3(pp, ColourBy = 1, colouroption = "manual", NamedColourVector = ManualColours, SortPrimary = hi_host, SortSecondary = lo_host, filename = "Species_net")
+bipartite_D3(pp, ColourBy = 1, colouroption = "manual", NamedColourVector = ManualColours, PrimaryLab = "Reservoir Host", SecondaryLab = "Spillover Host", SiteNames = "", SortPrimary = hi_host, SortSecondary = lo_host, filename = "Species_net")
 ```
 ```{r}
 
@@ -217,7 +226,17 @@ st2 <- table(m$Host_order,m$Spillover_order)
 sst2<-as.data.frame(st2)
 sst2%<>%filter(Freq>0)
 
-bipartite_D3(sst2, ColourBy = 1, colouroption = "brewer", PrimaryLab = "Reservoir Host Order", SecondaryLab = "Spillover Host Order", SiteNames = "Frequency", filename = "Order_net")
+# write.csv(sst2, here::here("data", "manipulation_data", "order_net.csv"), row.names =F, col.names = T)
+# 
+# dfgh<-system.file(here::here("data","manipulation_data","order_net.csv"), package = "bipartiteD3")
+# 
+#                   
+# bipartite_D3(as.data.frame(dfgh), ColourBy = 1, colouroption = "brewer", PrimaryLab = "Reservoir Host Order", SecondaryLab = "Spillover Host Order", SiteNames = "Frequency", filename = "Order_net")
+# 
+
+
+bipartite_D3(sst2, ColourBy = 1, colouroption = "brewer", PrimaryLab = "Reservoir Host Order", SecondaryLab = "Spillover Host Order", SiteNames = "", filename = "Order_net")
+
 
 #save_d3_png(ola, "network_order.png")
 ```

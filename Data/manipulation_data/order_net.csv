@@ -1,0 +1,16 @@
+"Var1","Var2","Freq"
+"Artiodactyla","Artiodactyla",109
+"Carnivora","Artiodactyla",38
+"Chiroptera","Artiodactyla",6
+"Perissodactyla","Artiodactyla",13
+"Rodentia","Artiodactyla",1
+"Artiodactyla","Carnivora",7
+"Carnivora","Carnivora",2
+"Perissodactyla","Carnivora",4
+"Lagomorpha","Lagomorpha",2
+"Perissodactyla","Lagomorpha",1
+"Artiodactyla","Perissodactyla",5
+"Carnivora","Perissodactyla",10
+"Chiroptera","Perissodactyla",1
+"Perissodactyla","Perissodactyla",1
+"Perissodactyla","Rodentia",1

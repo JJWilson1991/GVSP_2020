@@ -116,3 +116,14 @@ Attaching package: ‘bipartite’
 "0","library(bipartiteD3)"
 "2","package ‘bipartiteD3’ was built under R version 3.6.3"
 "0","library(r2d3)"
+"2","package ‘r2d3’ was built under R version 3.6.3"
+"2","Registered S3 methods overwritten by 'htmltools':
+  method               from         
+  print.html           tools:rstudio
+  print.shiny.tag      tools:rstudio
+  print.shiny.tag.list tools:rstudio
+"
+"2","Registered S3 method overwritten by 'htmlwidgets':
+  method           from         
+  print.htmlwidget tools:rstudio
+"
