@@ -206,7 +206,7 @@ Horse= "gold",
 
 pp<-orders4[,c(1,2,3)]
 
-bipartite_D3(pp, ColourBy = 1, colouroption = "manual", NamedColourVector = ManualColours, PrimaryLab = "Reservoir Host", SecondaryLab = "Spillover Host", SiteNames = "", SortPrimary = hi_host, PercentageDecimals = 1, MainFigSize = c(1000,1000) ,IndivFigSize = c(300,800), filename = "Species_net")
+o<-bipartite_D3(pp, ColourBy = 1, colouroption = "manual", NamedColourVector = ManualColours, PrimaryLab = "Reservoir Host", SecondaryLab = "Spillover Host", SiteNames = "", SortPrimary = hi_host, PercentageDecimals = 1, MainFigSize = c(1000,1000) ,IndivFigSize = c(300,800), filename = "Species_net")
 ```
 ```{r}
 
