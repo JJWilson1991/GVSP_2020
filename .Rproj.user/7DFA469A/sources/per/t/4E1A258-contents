@@ -195,27 +195,18 @@ orders4%<>%group_by(Host_order)
 
 nest_o<-orders4%>%nest()
 
-ar<-unique(nest_o$data[[1]]$Host_species)
-ca<-unique(nest_o$data[[2]]$Host_species)%>%as.factor()
-ch<-unique(nest_o$data[[3]]$Host_species)
-la<-unique(nest_o$data[[4]]$Host_species)
-pe<-unique(nest_o$data[[5]]$Host_species)
-ro<-unique(nest_o$data[[6]]$Host_species)
-
-Man<-c("red","orange","yellow","green", "blue", "purple")
-names(Man)<-c(ar,ca,ch,la,pe,ro)  
 
   ManualColours<- c(`African buffalo`= "green",Cattle='green', `American bison`="green",  Elk="green", Goats="green", Impala="green", Kudu="green", `Mule deer`="green", Pigs="green",        `Pygmy hogs`="green", `Red deer`="green", `Roe deer`="green", Sheep="green",  `Water buffalo`="green", `White-tailed deer`="green",`Wild boar`= "green",       
 Raccoon="purple", Badger="purple", Dog="purple", Fox="purple",  Mink="purple", `Pine marten`="purple",  Polecat="purple", `Raccoon dogs`="purple", Skunk="purple", Wolf="purple",
 `Brazilian free-tailed bat`="orange", `Flying fox`="orange", `Horseshoe bats`="orange",  `Vampire bat`="orange",
-`Domestic rabbits`="pink", `Wild rabbits`="pink",
-Horse= "yellow",
+`Domestic rabbits`="magenta", `Wild rabbits`="magenta",
+Horse= "gold",
 `Norway rats`= "blue") 
                   
 
 pp<-orders4[,c(1,2,3)]
 
-bipartite_D3(pp, ColourBy = 1, colouroption = "manual", NamedColourVector = ManualColours, PrimaryLab = "Reservoir Host", SecondaryLab = "Spillover Host", SiteNames = "", SortPrimary = hi_host, SortSecondary = lo_host, filename = "Species_net")
+bipartite_D3(pp, ColourBy = 1, colouroption = "manual", NamedColourVector = ManualColours, PrimaryLab = "Reservoir Host", SecondaryLab = "Spillover Host", SiteNames = "", SortPrimary = hi_host, PercentageDecimals = 1, MainFigSize = c(1000,1000) ,IndivFigSize = c(300,800), filename = "Species_net")
 ```
 ```{r}
 
@@ -234,8 +225,10 @@ sst2%<>%filter(Freq>0)
 # bipartite_D3(as.data.frame(dfgh), ColourBy = 1, colouroption = "brewer", PrimaryLab = "Reservoir Host Order", SecondaryLab = "Spillover Host Order", SiteNames = "Frequency", filename = "Order_net")
 # 
 
+OrderColours<-c(Artiodactyla="green", Carnivora="purple", Chiroptera="orange", Lagomorpha="magenta", Perissodactyla="gold", Rodentia="blue")
 
-bipartite_D3(sst2, ColourBy = 1, colouroption = "brewer", PrimaryLab = "Reservoir Host Order", SecondaryLab = "Spillover Host Order", SiteNames = "", filename = "Order_net")
+
+o<-bipartite_D3(sst2, ColourBy = 1, colouroption = "manual", NamedColourVector = OrderColours, PrimaryLab = "Reservoir Host Order", SecondaryLab = "Spillover Host Order", SiteNames = "", PercentageDecimals = 1, filename = "Order_net")
 
 
 #save_d3_png(ola, "network_order.png")

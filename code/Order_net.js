@@ -19,7 +19,7 @@ var data=[["Artiodactyla","Artiodactyla",109],
  function sort(sortOrder){
                     return function(a,b){ return d3.ascending(sortOrder.indexOf(a),sortOrder.indexOf(b)) }
                   }
-var color = {'Unlinked ':'#3366CC','Artiodactyla':'#7FC97F','Carnivora':'#BEAED4','Chiroptera':'#FDC086','Perissodactyla':'#FFFF99','Rodentia':'#386CB0','Lagomorpha':'#F0027F'};
+var color = {'Unlinked':'#3366CC','Artiodactyla':'green','Carnivora':'purple','Chiroptera':'orange','Lagomorpha':'magenta','Perissodactyla':'gold','Rodentia':'blue'};
 
 
 
@@ -63,21 +63,21 @@ g1.call(bp1);g1.append("text")
  g1.selectAll(".mainBars").append("text").attr("class","perc")
                         .attr("x",d=>(d.part=="primary"? -189:204))
                         .attr("y",d=>+6)
-                        .text(function(d){ return d3.format("0.0%")(d.percent)})
+                        .text(function(d){ return d3.format("0.1%")(d.percent)})
                         .attr("text-anchor",d=>(d.part=="primary"? "end": "start")); 
 
 function mouseover(d){
 bp1.mouseover(d);
                             g1.selectAll(".mainBars")
                             .select(".perc")
-                            .text(function(d){ return d3.format("0.0%")(d.percent)});
+                            .text(function(d){ return d3.format("0.1%")(d.percent)});
 }
 
                      function mouseout(d){
 bp1.mouseout(d);
                             g1.selectAll(".mainBars")
                             .select(".perc")
-                            .text(function(d){ return d3.format("0.0%")(d.percent)});
+                            .text(function(d){ return d3.format("0.1%")(d.percent)});
 }
 
 

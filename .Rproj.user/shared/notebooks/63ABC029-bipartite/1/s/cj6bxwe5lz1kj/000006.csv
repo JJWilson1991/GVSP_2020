@@ -1,0 +1,7 @@
+"0","#try to make order grouped"
+"0","sequence<-list(seq.higher=sample(colnames(t2)), seq.lower=sample(rownames(t2)))"
+"0","#figure how to do sequnece"
+"0","#t3<-"
+"0","    t4<-sortweb(t2, sort.order=""seq"", sequence=sequence)"
+"0","    "
+"0","  plotweb(t4)"

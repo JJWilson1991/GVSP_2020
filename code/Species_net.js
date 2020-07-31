@@ -140,7 +140,7 @@ var data=[["African buffalo","Cattle",9],
  function sort(sortOrder){
                     return function(a,b){ return d3.ascending(sortOrder.indexOf(a),sortOrder.indexOf(b)) }
                   }
-var color = {'Unlinked':'#3366CC','African buffalo':'green','Cattle':'green','American bison':'green','Elk':'green','Goats':'green','Impala':'green','Kudu':'green','Mule deer':'green','Pigs':'green','Pygmy hogs':'green','Red deer':'green','Roe deer':'green','Sheep':'green','Water buffalo':'green','White-tailed deer':'green','Wild boar':'green','Raccoon':'purple','Badger':'purple','Dog':'purple','Fox':'purple','Mink':'purple','Pine marten':'purple','Polecat':'purple','Raccoon dogs':'purple','Skunk':'purple','Wolf':'purple','Brazilian free-tailed bat':'orange','Flying fox':'orange','Horseshoe bats':'orange','Vampire bat':'orange','Domestic rabbits':'pink','Wild rabbits':'pink','Horse':'yellow','Norway rats':'blue'};
+var color = {'Unlinked':'#3366CC','African buffalo':'green','Cattle':'green','American bison':'green','Elk':'green','Goats':'green','Impala':'green','Kudu':'green','Mule deer':'green','Pigs':'green','Pygmy hogs':'green','Red deer':'green','Roe deer':'green','Sheep':'green','Water buffalo':'green','White-tailed deer':'green','Wild boar':'green','Raccoon':'purple','Badger':'purple','Dog':'purple','Fox':'purple','Mink':'purple','Pine marten':'purple','Polecat':'purple','Raccoon dogs':'purple','Skunk':'purple','Wolf':'purple','Brazilian free-tailed bat':'orange','Flying fox':'orange','Horseshoe bats':'orange','Vampire bat':'orange','Domestic rabbits':'magenta','Wild rabbits':'magenta','Horse':'gold','Norway rats':'blue'};
 
 
 
@@ -151,11 +151,10 @@ var g1 = svg.append("g").attr("transform","translate(325,50)");
                          .value(d=>d[2])
                          .min(10)
                          .pad(1)
-                         .height(400)
-                         .width(200)
+                         .height(800)
+                         .width(300)
                          .barSize(35)
                          .fill(d=>color[d.primary])
-.sortSecondary(sort(["African buffalo","Alpine chamois","Alpine ibex","Camel","Cattle","Deer","Eland","Elephants","Elk","European bison","Fallow deer","Giraffes","Goat","Goats","Grant's gazelle","Impala","Mongolian gazelle","Mouflon","Mule deer","Peccary","Pigs","Red deer","Roan antelope","Roe deer","Sable antelope","Sambar deer","Sheep","Waterbuck","White-tailed deer","Wild boar","Wild hogs","Wildbeest","Asiatic black bears","Coyote","Dog","Lion","Malayan sun bear","Mink","Mongoose","Raccoon","Cotton-tailed rabbit","Domestic rabbits","Wild rabbits","Donkey","Horse","Zebra","Pocket gopher"]))
 .sortPrimary(sort(["African buffalo","American bison","Cattle","Elk","Goats","Impala","Kudu","Mule deer","Pigs","Pygmy hogs","Red deer","Roe deer","Sheep","Water buffalo","White-tailed deer","Wild boar","Badger","Dog","Fox","Mink","Pine marten","Polecat","Raccoon","Raccoon dogs","Skunk","Wolf","Brazilian free-tailed bat","Flying fox","Horseshoe bats","Vampire bat","Domestic rabbits","Wild rabbits","Horse","Norway rats"]))
 .orient("vertical");
 
@@ -186,21 +185,21 @@ g1.call(bp1);g1.append("text")
  g1.selectAll(".mainBars").append("text").attr("class","perc")
                         .attr("x",d=>(d.part=="primary"? -255:240))
                         .attr("y",d=>+6)
-                        .text(function(d){ return d3.format("0.0%")(d.percent)})
+                        .text(function(d){ return d3.format("0.1%")(d.percent)})
                         .attr("text-anchor",d=>(d.part=="primary"? "end": "start")); 
 
 function mouseover(d){
 bp1.mouseover(d);
                             g1.selectAll(".mainBars")
                             .select(".perc")
-                            .text(function(d){ return d3.format("0.0%")(d.percent)});
+                            .text(function(d){ return d3.format("0.1%")(d.percent)});
 }
 
                      function mouseout(d){
 bp1.mouseout(d);
                             g1.selectAll(".mainBars")
                             .select(".perc")
-                            .text(function(d){ return d3.format("0.0%")(d.percent)});
+                            .text(function(d){ return d3.format("0.1%")(d.percent)});
 }
 
 
